@@ -1,8 +1,70 @@
-﻿@{
+﻿@model IEnumerable<HomeServices.Models.Category>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="hero-section">
+    <div class="container">
+        <h1 class="hero-title">Your Home, Mastered</h1>
+        <p class="text-muted lead mx-auto mb-4" style="max-width: 700px;">
+            Connect with the finest local artisans and service professionals who treat your home with the mastery it deserves.
+        </p>
+    </div>
+</section>
+
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="row g-4">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <div class="col-md-4">
+                        <div class="card service-card shadow-sm border-0">
+                            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=500" class="card-img h-100 w-100" style="object-fit:cover; filter: brightness(0.7);">
+                            <div class="service-card-overlay d-flex flex-column justify-content-end p-4">
+                                <h3 class="fw-bold mb-1">@item.Name</h3>
+                                <p class="small opacity-75 mb-0">@item.Description</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12 text-center py-5">
+                    <p class="text-muted">No services available at the moment. Please seed the database.</p>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light border-top">
+    <div class="container text-center">
+        <h2 class="mb-5 fw-bold" style="color: #1a237e;">Crafted for Quality</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="p-4 bg-white shadow-sm rounded-4 h-100">
+                    <div class="feature-icon-circle mb-3"><i class="fas fa-certificate"></i></div>
+                    <h5 class="fw-bold">Vetted Artisans</h5>
+                    <p class="text-muted small mb-0">Every professional undergoes a rigorous background check and skill certification process.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-4 bg-white shadow-sm rounded-4 h-100">
+                    <div class="feature-icon-circle mb-3"><i class="fas fa-clock"></i></div>
+                    <h5 class="fw-bold">Precision Scheduling</h5>
+                    <p class="text-muted small mb-0">Book with exact time windows that respect your busy professional lifestyle.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-4 bg-white shadow-sm rounded-4 h-100">
+                    <div class="feature-icon-circle mb-3"><i class="fas fa-shield-alt"></i></div>
+                    <h5 class="fw-bold">Craft Guarantee</h5>
+                    <p class="text-muted small mb-0">We stand behind every service with our comprehensive quality and safety protection.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

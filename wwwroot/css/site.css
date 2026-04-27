@@ -20,3 +20,54 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=2069&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero-title {
+    color: #1a237e;
+    font-weight: 800;
+    font-size: 3rem;
+}
+
+/* Service Cards */
+.service-card {
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    height: 300px;
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+    .service-card:hover {
+        transform: translateY(-10px);
+    }
+
+    .service-card img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+
+.service-card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    padding: 20px;
+    color: white;
+}
+
+/* Registration & Login Inputs */
+.form-control {
+    border-radius: 10px;
+    padding: 10px 15px;
+}
