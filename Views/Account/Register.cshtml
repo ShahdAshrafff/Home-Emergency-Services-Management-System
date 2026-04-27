@@ -1,56 +1,107 @@
 ﻿@model HomeServices.ViewModels.RegisterVM
 
-<h2 class="text-center">Create New Account</h2>
-<form asp-action="Register" method="post" class="shadow p-4 rounded bg-light">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+@{
+    ViewData["Title"] = "Create New Account";
+}
 
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <label asp-for="FullName" class="form-label"></label>
-            <input asp-for="FullName" class="form-control" placeholder="Enter your full name" />
-            <span asp-validation-for="FullName" class="text-danger"></span>
-        </div>
-        <div class="col-md-6 mb-3">
-            <label asp-for="Email" class="form-label"></label>
-            <input asp-for="Email" class="form-control" placeholder="name@example.com" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
+@section Styles {
+    <link rel="stylesheet" href="~/css/auth.css" asp-append-version="true" />
+}
+
+<div class="auth-wrapper">
+    <div class="auth-card text-center" style="max-width: 650px;"> @* عرض أكبر قليلاً لاستيعاب الحقول المزدوجة *@
+        <h1 class="auth-title">Join Us</h1>
+        <p class="auth-subtitle">Create an account to start your professional journey</p>
+
+        <form asp-action="Register" asp-controller="Account" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
+
+            <div class="row">
+                <div class="col-md-6 text-start mb-4">
+                    <label asp-for="FullName" class="form-label-custom">Full Name</label>
+                    <div class="input-group-auth">
+                        <i class="fas fa-user"></i>
+                        <input asp-for="FullName" class="form-control-auth" placeholder="Enter your full name" />
+                    </div>
+                    <span asp-validation-for="FullName" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6 text-start mb-4">
+                    <label asp-for="Email" class="form-label-custom">Email Address</label>
+                    <div class="input-group-auth">
+                        <i class="fas fa-envelope"></i>
+                        <input asp-for="Email" class="form-control-auth" placeholder="name@example.com" />
+                    </div>
+                    <span asp-validation-for="Email" class="text-danger small"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 text-start mb-4">
+                    <label asp-for="PhoneNumber" class="form-label-custom">Phone Number</label>
+                    <div class="input-group-auth">
+                        <i class="fas fa-phone"></i>
+                        <input asp-for="PhoneNumber" class="form-control-auth" placeholder="01xxxxxxxxx" />
+                    </div>
+                    <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6 text-start mb-4">
+                    <label asp-for="Role" class="form-label-custom">Account Type</label>
+                    <div class="input-group-auth">
+                        <i class="fas fa-briefcase"></i>
+                        <select asp-for="Role" class="form-control-auth" style="padding-left: 2.8rem; appearance: none;">
+                            <option value="Customer">Customer</option>
+                            <option value="Provider">Service Provider</option>
+                        </select>
+                    </div>
+                    <span asp-validation-for="Role" class="text-danger small"></span>
+                </div>
+            </div>
+
+            <div class="text-start mb-4">
+                <label asp-for="Address" class="form-label-custom">Address</label>
+                <div class="input-group-auth">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <input asp-for="Address" class="form-control-auth" placeholder="Street, Building, City" />
+                </div>
+                <span asp-validation-for="Address" class="text-danger small"></span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 text-start mb-4">
+                    <label asp-for="Password" class="form-label-custom">Password</label>
+                    <div class="input-group-auth">
+                        <i class="fas fa-lock"></i>
+                        <input asp-for="Password" type="password" class="form-control-auth" placeholder="••••••••" />
+                    </div>
+                    <span asp-validation-for="Password" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6 text-start mb-4">
+                    <label asp-for="ConfirmPassword" class="form-label-custom">Confirm Password</label>
+                    <div class="input-group-auth">
+                        <i class="fas fa-check-double"></i>
+                        <input asp-for="ConfirmPassword" type="password" class="form-control-auth" placeholder="••••••••" />
+                    </div>
+                    <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-auth-primary mt-3">
+                Register Now <i class="fas fa-user-plus ms-2"></i>
+            </button>
+
+            <div class="mt-4">
+                <p class="text-muted small">
+                    Already have an account? 
+                    <a asp-controller="Account" asp-action="Login" class="auth-footer-link">Sign In</a>
+                </p>
+            </div>
+        </form>
     </div>
+</div>
 
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <label asp-for="PhoneNumber" class="form-label"></label>
-            <input asp-for="PhoneNumber" class="form-control" placeholder="01xxxxxxxxx" />
-            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-        </div>
-        <div class="col-md-6 mb-3">
-            <label asp-for="Role" class="form-label">Account Type</label>
-            <select asp-for="Role" class="form-select">
-                <option value="Customer">Customer</option>
-                <option value="Provider">Service Provider</option>
-            </select>
-            <span asp-validation-for="Role" class="text-danger"></span>
-        </div>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="Address" class="form-label"></label>
-        <input asp-for="Address" class="form-control" placeholder="Street, Building, City" />
-        <span asp-validation-for="Address" class="text-danger"></span>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <label asp-for="Password" class="form-label"></label>
-            <input asp-for="Password" class="form-control" />
-            <span asp-validation-for="Password" class="text-danger"></span>
-        </div>
-        <div class="col-md-6 mb-3">
-            <label asp-for="ConfirmPassword" class="form-label"></label>
-            <input asp-for="ConfirmPassword" class="form-control" />
-            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-        </div>
-    </div>
-
-    <button type="submit" class="btn btn-primary w-100 mt-3">Register Now</button>
-</form>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

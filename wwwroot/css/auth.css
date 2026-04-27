@@ -1,0 +1,97 @@
+﻿/* auth.css */
+.auth-wrapper {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* استخدام نفس نمط خلفية المشروع */
+    background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=2069&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    padding: 2rem;
+}
+
+.auth-card {
+    background: white;
+    border-radius: 2rem;
+    padding: 3rem;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+
+.auth-title {
+    color: #1a237e;
+    font-weight: 800;
+    font-size: 2.2rem;
+}
+
+.auth-subtitle {
+    color: #666;
+    margin-bottom: 2.5rem;
+}
+
+.form-label-custom {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: #333;
+}
+
+.input-group-auth {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+    .input-group-auth i {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #999;
+    }
+
+.form-control-auth {
+    width: 100%;
+    padding: 0.8rem 1rem 0.8rem 2.8rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.8rem;
+    background-color: #fff;
+    transition: 0.3s;
+}
+
+    .form-control-auth:focus {
+        border-color: #1a237e;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.1);
+    }
+
+.btn-auth-primary {
+    background-color: #1a237e;
+    color: white;
+    width: 100%;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: 0.3s;
+}
+
+    .btn-auth-primary:hover {
+        background-color: #0d1440;
+        transform: translateY(-2px);
+    }
+
+.auth-footer-link {
+    color: #00897b; /* اللون الأخضر الهادئ الموجود في الصورة */
+    font-weight: 700;
+    text-decoration: none;
+}
+
+    .auth-footer-link:hover {
+        text-decoration: underline;
+    }

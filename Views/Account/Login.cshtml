@@ -1,44 +1,55 @@
 ﻿@model HomeServices.ViewModels.LoginVM
-
 @{
-    ViewData["Title"] = "تسجيل الدخول";
+    ViewData["Title"] = "Sign In";
 }
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <h2 class="text-center">@ViewData["Title"]</h2>
-            <hr />
-            <form asp-action="Login" method="post">
-                <div asp-validation-summary="All" class="text-danger"></div>
+@section Styles {
+    <link rel="stylesheet" href="~/css/auth.css" asp-append-version="true" />
+}
 
-                <div class="form-group mb-3">
-                    <label asp-for="Email" class="form-label">البريد الإلكتروني</label>
-                    <input asp-for="Email" class="form-control" placeholder="example@mail.com" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
+<div class="auth-wrapper">
+    <div class="auth-card text-center">
+        <h1 class="auth-title">Sign In</h1>
+        <p class="auth-subtitle">Sign in to manage your professional services</p>
 
-                <div class="form-group mb-3">
-                    <label asp-for="Password" class="form-label">كلمة السر</label>
-                    <input asp-for="Password" class="form-control" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
+        <form asp-action="Login" asp-controller="Account" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
 
-                <div class="form-check mb-3">
-                    <input asp-for="RememberMe" class="form-check-input" />
-                    <label asp-for="RememberMe" class="form-check-label">تذكرني؟</label>
+            <div class="text-start mb-4">
+                <label asp-for="Email" class="form-label-custom">Email Address</label>
+                <div class="input-group-auth">
+                    <i class="fas fa-envelope"></i>
+                    <input asp-for="Email" class="form-control-auth" placeholder="name@company.com" />
                 </div>
+                <span asp-validation-for="Email" class="text-danger small"></span>
+            </div>
 
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-success">دخول</button>
+            <div class="text-start mb-4">
+                <div class="d-flex justify-content-between">
+                    <label asp-for="Password" class="form-label-custom">Password</label>
+                    <a href="#" class="small text-decoration-none" style="color: #00897b; font-weight: 600;">Forgot Password?</a>
                 </div>
-            </form>
-        </div>
+                <div class="input-group-auth">
+                    <i class="fas fa-lock"></i>
+                    <input asp-for="Password" type="password" class="form-control-auth" placeholder="••••••••" />
+                </div>
+                <span asp-validation-for="Password" class="text-danger small"></span>
+            </div>
+
+            <button type="submit" class="btn-auth-primary mb-4">
+                Login to Account <i class="fas fa-arrow-right"></i>
+            </button>
+
+            <div class="mt-4">
+                <p class="text-muted small">
+                    New to ProHome Services? 
+                    <a asp-controller="Account" asp-action="Register" class="auth-footer-link">Create Account</a>
+                </p>
+            </div>
+        </form>
     </div>
 </div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
