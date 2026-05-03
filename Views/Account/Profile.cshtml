@@ -2,29 +2,57 @@
 
 @{
     ViewData["Title"] = "My Profile";
+    var walletColor = Model.WalletBalance > 0 ? "text-success" : "text-danger";
 }
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
 <div class="container mt-5">
-    <div class="card shadow">
-        <div class="card-header bg-dark text-white">
+    <div class="card shadow border-0">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
             <h3 class="mb-0">Personal Profile</h3>
+            <span class="badge bg-success fs-6">Balance: @Model.WalletBalance.ToString("C")</span>
         </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-4 text-center border-end">
                     <img src="https://ui-avatars.com/api/?name=@Model.FullName&background=random&size=150"
-                         class="rounded-circle mb-3" />
+                         class="rounded-circle mb-3 shadow-sm" />
                     <h4>@Model.FullName</h4>
-                    <span class="badge bg-primary">@ViewBag.UserRole</span>
+                    <span class="badge bg-primary px-3 py-2">@ViewBag.UserRole</span>
                 </div>
                 <div class="col-md-8 px-4">
                     <h5 class="text-muted border-bottom pb-2">User Information</h5>
-                    <p><strong>Email:</strong> @Model.Email</p>
-                    <p><strong>Phone:</strong> @(Model.PhoneNumber ?? "Not Set")</p>
-                    <p><strong>Address:</strong> @Model.Address</p>
-                    <p><strong>Member Since:</strong> @Model.CreatedAt.ToString("MMMM dd, yyyy")</p>
+
+                    <div class="row mt-3">
+                        <div class="col-sm-6">
+                            <p><strong>Email:</strong> <br /> @Model.Email</p>
+                            <p><strong>Phone:</strong> <br /> @(Model.PhoneNumber ?? "Not Set")</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p><strong>Address:</strong> <br /> @Model.Address</p>
+                            <p><strong>Member Since:</strong> <br /> @Model.CreatedAt.ToString("MMMM dd, yyyy")</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-3 bg-light rounded border shadow-sm">
+                        <h6 class="text-uppercase text-muted small fw-bold">Virtual Wallet</h6>
+                        <div class="d-flex align-items-center">
+                            <div class="flex-shrink-0">
+                                <i class="bi bi-wallet2 fs-1 @walletColor"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h4 class="mb-0 @walletColor fw-bold">@Model.WalletBalance.ToString("C")</h4>
+                                <small class="text-muted">Available for home services</small>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="mt-4">
-                        <a href="/" class="btn btn-secondary">Back to Home</a>
+                        <a href="/" class="btn btn-secondary shadow-sm">
+                            <i class="bi bi-house-door"></i> Back to Home
+                        </a>
+                        <!-- تم حذف زر Edit Profile من هنا -->
                     </div>
                 </div>
             </div>
