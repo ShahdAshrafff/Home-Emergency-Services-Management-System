@@ -17,7 +17,7 @@ namespace HomeServices.Models
         public DateTime PreferredSchedule { get; set; }
 
         [Display(Name = "Request Status")]
-        public string Status { get; set; } = "Pending"; // Pending, Accepted, Completed, Cancelled
+        public string Status { get; set; } = "Pending";
 
         [Range(1, 5)]
         [Display(Name = "Rating")]
@@ -26,7 +26,14 @@ namespace HomeServices.Models
         [Display(Name = "Feedback Comment")]
         public string? FeedbackComment { get; set; }
 
-        // Relationships and Foreign Keys
+        [Display(Name = "Final Price")]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal? FinalPrice { get; set; }
+
+        // --- التعديل هنا ---
+        // أضفنا علامة الاستفهام لتجنب مشكلة "The Offers field is required"
+        public virtual ICollection<ServiceOffer>? Offers { get; set; }
+        // --------------------
 
         [Required]
         [Display(Name = "Customer")]

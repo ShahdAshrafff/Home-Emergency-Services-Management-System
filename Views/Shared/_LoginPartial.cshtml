@@ -1,19 +1,32 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using HomeServices.Models
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-<ul class="navbar-nav">
+<ul class="navbar-nav align-items-center">
     @if (SignInManager.IsSignedIn(User))
     {
         var currentUser = await UserManager.GetUserAsync(User);
         var displayName = currentUser?.FullName ?? User.Identity?.Name;
+
+        @if (currentUser != null)
+        {
+            <li class="nav-item me-2">
+                <div class="px-3 py-1 bg-light border rounded-pill d-flex align-items-center shadow-sm" title="Current Wallet Balance">
+                    <i class="bi bi-wallet2 text-success me-2"></i>
+                    <span class="fw-bold text-dark" style="font-size: 0.9rem;">
+                        @currentUser.WalletBalance.ToString("C")
+                    </span>
+                </div>
+            </li>
+        }
 
         <li class="nav-item">
             <span class="nav-link text-dark">Hello, **@displayName**!</span>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link btn btn-outline-primary mx-2" asp-controller="Account" asp-action="Profile">My Profile</a>
+            <a class="nav-link btn btn-outline-primary mx-2 shadow-sm" asp-controller="Account" asp-action="Profile">My Profile</a>
         </li>
 
         <li class="nav-item">

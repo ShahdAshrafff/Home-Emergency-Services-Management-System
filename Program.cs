@@ -11,8 +11,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 // 2. Identity Services Configuration
+// ????? ???? ??????? ApplicationUser ??? ???? ??????? ?????
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => {
-    // Identity password requirements (Adjusted for easier testing during development)
     options.Password.RequiredLength = 4;
     options.Password.RequireDigit = false;
     options.Password.RequireNonAlphanumeric = false;
@@ -53,7 +53,7 @@ app.MapControllerRoute(
 
 app.MapRazorPages();
 
-// 5. Automatic Database Creation & English Seed Data
+// 5. Automatic Database Creation & Seed Data
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -61,8 +61,8 @@ using (var scope = app.Services.CreateScope())
     {
         var context = services.GetRequiredService<ApplicationDbContext>();
 
-        // Ensures the database is created based on the current context
-        context.Database.EnsureCreated();
+        // ?????? Migrate ??? EnsureCreated ???? ???? ??? Migrations ???? ??????? ???????
+        context.Database.Migrate();
 
         // Seeding initial categories if the table is empty
         if (!context.Categories.Any())
@@ -78,7 +78,6 @@ using (var scope = app.Services.CreateScope())
     }
     catch (Exception ex)
     {
-        // Log errors if database seeding fails
         var logger = services.GetRequiredService<ILogger<Program>>();
         logger.LogError(ex, "An error occurred while seeding the database.");
     }

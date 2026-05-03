@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HomeServices.Models
 {
@@ -18,8 +19,19 @@ namespace HomeServices.Models
         [Display(Name = "Account Created At")]
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-        // Relationships: A customer has requests, and a provider has tasks
+        // --- التعديلات الجديدة للمحفظة ---
+
+        [Display(Name = "Wallet Balance")]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal WalletBalance { get; set; } = 1000.00m; // الرصيد المبدئي 1000 دولار
+
+        // ---------------------------------
+
+        // Relationships
         public virtual ICollection<Request> CustomerRequests { get; set; }
         public virtual ICollection<Request> ProviderTasks { get; set; }
+
+        // علاقة مع جدول العروض (البيدنج) اللي هنكريته
+        public virtual ICollection<ServiceOffer> Offers { get; set; }
     }
 }
