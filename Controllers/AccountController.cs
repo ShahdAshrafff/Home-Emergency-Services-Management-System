@@ -33,7 +33,7 @@ namespace HomeServices.Controllers
                 {
                     UserName = model.Email ,
                     Email = model.Email ,
-                    FullName = model.FullName ,
+                    FullName = model.FullName.Trim(), 
                     Address = model.Address ,
                     PhoneNumber = model.PhoneNumber ,
                     CreatedAt = DateTime.Now
@@ -41,15 +41,13 @@ namespace HomeServices.Controllers
 
                 var result = await _userManager.CreateAsync(user , model.Password);
 
-                if (result.Succeeded)
-                {
-                    if (!await _roleManager.RoleExistsAsync(model.Role))
-                        await _roleManager.CreateAsync(new IdentityRole(model.Role));
+                if (!await _roleManager.RoleExistsAsync(model.UserRole))
+                    await _roleManager.CreateAsync(new IdentityRole(model.UserRole));
 
-                    await _userManager.AddToRoleAsync(user , model.Role);
-                    await _signInManager.SignInAsync(user , isPersistent: false);
+                await _userManager.AddToRoleAsync(user, model.UserRole);
+                await _signInManager.SignInAsync(user , isPersistent: false);
                     return RedirectToAction("Index" , "Home");
-                }
+                
                 foreach (var error in result.Errors) ModelState.AddModelError("" , error.Description);
             }
             return View(model);

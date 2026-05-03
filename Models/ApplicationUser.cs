@@ -17,7 +17,7 @@ namespace HomeServices.Models
 
         [Display(Name = "Account Created At")]
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-
+        public bool IsApproved { get; set; } = false;
         // Relationships: A customer has requests, and a provider has tasks
         public virtual ICollection<Request> CustomerRequests { get; set; }
         public virtual ICollection<Request> ProviderTasks { get; set; }

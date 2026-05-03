@@ -51,13 +51,13 @@
                     <label class="input-label">Account Type</label>
                     <div class="custom-input-group">
                         <i class="fas fa-users-cog"></i>
-                        <select asp-for="Role" class="custom-control form-select" style="padding-left: 55px;">
+                        <select asp-for="UserRole" class="custom-control form-select" style="padding-left: 55px;">
                             <option value="" disabled selected>Select Account Type</option>
                             <option value="Customer">Customer</option>
                             <option value="ServiceProvider">Service Provider</option>
                         </select>
                     </div>
-                    <span asp-validation-for="Role" class="text-danger small"></span>
+                    <span asp-validation-for="UserRole" class="text-danger small"></span>
                 </div>
 
                 <!-- Address -->
@@ -104,6 +104,7 @@
 </div>
 
 @section Scripts {
+  
     <partial name="_ValidationScriptsPartial" />
     <script>
         const toggleRegPass = document.querySelector('#toggleRegPass');
