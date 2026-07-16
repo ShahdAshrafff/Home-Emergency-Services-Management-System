@@ -355,25 +355,6 @@ Update-Database
 Ctrl + F5
 ```
 
----
-
-# 📷 Suggested Screenshots
-
-Add screenshots for:
-
-* Login Page
-* Registration Page
-* Customer Dashboard
-* Provider Dashboard
-* Admin Dashboard
-* Request Details
-* Offers System
-* Wallet System
-* Notifications
-* ERD Diagram
-
----
-
 # 👨‍💻 Team Members
 
 Shahd Ashraf , Alshaimaa Ashraf, Dina Aboueloyoun,
